@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
-#include "samd51j18a.h"
+#include "samd51.h"
 #include "conf_usb.h"
 #include "udd.h"
 

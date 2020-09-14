@@ -21,7 +21,7 @@ COMPILEFLAGS += -ffunction-sections
 COMPILEFLAGS += -fshort-enums
 COMPILEFLAGS += -fno-inline-small-functions
 COMPILEFLAGS += -fno-strict-aliasing
-COMPILEFLAGS += -mfloat-abi=hard
+COMPILEFLAGS += -mfloat-abi=softfp
 COMPILEFLAGS += -mfpu=fpv4-sp-d16
 COMPILEFLAGS += -mthumb
 
@@ -54,3 +54,10 @@ EXTRALIBDIRS =
 bin: $(BUILD_DIR)/$(TARGET).hex
 	$(OBJCOPY) -Iihex -Obinary $(BUILD_DIR)/$(TARGET).hex $(BUILD_DIR)/$(TARGET).bin
 	$(COPY) $(BUILD_DIR)/$(TARGET).bin $(TARGET).bin;
+
+uf2: bin
+	python lib/uf2/utils/uf2conv.py -b $(BOOTLOADER_SIZE) -c -o $(BUILD_DIR)/$(TARGET).uf2 $(BUILD_DIR)/$(TARGET).bin
+	$(COPY) $(BUILD_DIR)/$(TARGET).uf2 $(TARGET).uf2;
+	@echo '======== Next steps ========'
+	@echo 1. Enter bootloader mode on your keyboard
+	@echo 2. copy $(PWD)/$(TARGET).uf2 to the bootloader volume

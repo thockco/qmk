@@ -20,18 +20,22 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifndef MD_BOOTLOADER
 
+#ifdef RGB_MATRIX_ENABLE
+
 //From keyboard
 #include "config_led.h"
 #include "config.h"
 
+#endif // RGB_MATRIX_ENABLE
+
 #endif //MD_BOOTLOADER
 
-#define PLL_RATIO                   47  //mcu frequency ((X+1)MHz)
+//#define PLL_RATIO                   47  //mcu frequency ((X+1)MHz)
 #define FREQ_DFLL_DEFAULT     48000000  //DFLL frequency / usb clock
 #define FREQ_SPI_DEFAULT       1000000  //spi to 595 shift regs
 #define FREQ_I2C0_DEFAULT       100000  //i2c to hub
 #define FREQ_I2C1_DEFAULT       I2C_HZ  //i2c to LED drivers
-#define FREQ_TC45_DEFAULT      1000000  //1 usec resolution
+#define FREQ_TC25_DEFAULT      1000000  //1 usec resolution
 
 //I2C1 Set      ~Result     PWM Time (2x Drivers)
 //     1000000  1090000
@@ -42,7 +46,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //     580000   615000      6.08ms
 //     500000   522000
 
-#define FREQ_XOSC0            16000000
+// #define FREQ_XOSC0            16000000
 
 #define CHAN_SERCOM_SPI   2 //shift regs
 #define CHAN_SERCOM_I2C0  0 //hub
@@ -50,9 +54,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define CHAN_SERCOM_UART  3 //debug util
 
 //Generator clock channels
-#define GEN_DPLL0   0
+#define GEN_DFLL   0
 #define GEN_OSC0    1
-#define GEN_TC45    2
+#define GEN_TC25    2
+#define GEN_PTC    5
 
 #define SERCOM_COUNT 5
 #define GCLK_COUNT  12
@@ -77,6 +82,7 @@ void CLK_oscctrl_init(void);
 void CLK_reset_time(void);
 uint32_t CLK_set_gclk_freq(uint8_t gclkn, uint32_t freq);
 uint32_t CLK_enable_timebase(void);
+uint32_t CLK_init_PTC(void);
 uint64_t timer_read64(void);
 void CLK_delay_us(uint32_t usec);
 void CLK_delay_ms(uint64_t msec);

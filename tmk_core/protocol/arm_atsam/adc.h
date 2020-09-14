@@ -34,4 +34,6 @@ extern uint16_t v_con_2_boot;
 void ADC0_clock_init(void);
 void ADC0_init(void);
 
+uint16_t adc_get(uint8_t muxpos);
+
 #endif //_ADC_H_

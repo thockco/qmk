@@ -20,6 +20,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #include "quantum.h"
 
+#ifdef RGB_MATRIX_ENABLE
+
 //From keyboard
 #include "config_led.h"
 
@@ -154,5 +156,7 @@ extern uint8_t breathe_dir;
 #define LED_MODE_MAX_INDEX          LED_MODE_INDICATORS_ONLY   //Must be highest value
 
 #endif // USE_MASSDROP_CONFIGURATOR
+
+#endif // RGB_MATRIX_ENABLE
 
 #endif //_LED_MATRIX_H_
