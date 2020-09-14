@@ -41,7 +41,7 @@ void bootmagic(void)
 
     /* bootloader */
     if (bootmagic_scan_keycode(BOOTMAGIC_KEY_BOOTLOADER)) {
-        bootloader_jump();
+      bootloader_jump();
     }
 
     /* debug enable */

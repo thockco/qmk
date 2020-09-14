@@ -48,8 +48,8 @@
  #define ARM_MATH_CM4
 #endif
 
-#undef LITTLE_ENDIAN  //redefined in samd51j18a.h
-#include "samd51j18a.h"
+#undef LITTLE_ENDIAN  //redefined in samd51.h
+#include "samd51.h"
 #include "ui.h"
 
 //! Sequence process running each \c SEQUENCE_PERIOD ms

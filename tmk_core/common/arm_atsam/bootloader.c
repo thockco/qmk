@@ -15,7 +15,7 @@
  */
 
 #include "bootloader.h"
-#include "samd51j18a.h"
+#include "samd51.h"
 #include "md_bootloader.h"
 
 //Set watchdog timer to reset. Directs the bootloader to stay in programming mode.
@@ -37,6 +37,13 @@ void bootloader_jump(void) {
         while (1) {}                                            //Won't get here
     }
 #endif
+
+#ifdef BOOTLOADER_MAGIC
+    *MAGIC_ADDR = BOOTLOADER_MAGIC;                         //Set magic number into RAM
+    NVIC_SystemReset();                                     //Perform system reset
+    while (1) {}                                            //Won't get here
+#endif
+
 
     WDT->CTRLA.bit.ENABLE = 0;
     while (WDT->SYNCBUSY.bit.ENABLE) {}

@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #ifdef CONSOLE_ENABLE
 
-#include "samd51j18a.h"
+#include "samd51.h"
 #include "arm_atsam_protocol.h"
 #include "printf.h"
 #include <string.h>

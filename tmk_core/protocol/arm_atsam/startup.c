@@ -504,11 +504,8 @@ void Reset_Handler(void)
 #ifdef KEYBOARD_massdrop_ctrl
         /* WARNING: This is only for CTRL bootloader release "v2.18Jun 22 2018 17:28:08" for bootloader_jump support */
         if (*MAGIC_ADDR == BOOTLOADER_MAGIC) {
-                /* At this point, the bootloader's memory is initialized properly, so undo the jump to here, then jump back */
-                *MAGIC_ADDR = 0x00000000;           /* Change value to prevent potential bootloader entrance loop */
-                __set_MSP(0x20008818);              /* MSP according to bootloader */
                 SCB->VTOR = 0x00000000;             /* Vector table back to bootloader's */
-                asm("bx %0"::"r"(0x00001267));      /* Jump past bootloader RCAUSE check using THUMB */
+                NVIC_SystemReset();
         }
 #endif
         uint32_t *pSrc, *pDest;

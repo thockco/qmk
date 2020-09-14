@@ -43,7 +43,7 @@
 /*
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
-#include "samd51j18a.h"
+#include "samd51.h"
 #include <string.h>
 #include <stdlib.h>
 
