@@ -17,10 +17,11 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     unzip \
     wget \
     zip \
+    python \
     && rm -rf /var/lib/apt/lists/*
 
-ENV KEYBOARD=ergodox_ez
-ENV KEYMAP=default
+ENV KEYBOARD=thock/conundrum
+ENV KEYMAP=default:uf2
 
 VOLUME /qmk_firmware
 WORKDIR /qmk_firmware
