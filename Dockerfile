@@ -1,5 +1,4 @@
 FROM debian:9
-ARG keymap=default:uf2
 
 RUN apt-get update && apt-get install --no-install-recommends -y \
     avr-libc \
@@ -20,6 +19,8 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     zip \
     python \
     && rm -rf /var/lib/apt/lists/*
+
+ARG keymap=default:uf2
 
 ENV KEYBOARD=thock/conundrum
 ENV KEYMAP=$keymap
