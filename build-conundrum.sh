@@ -9,7 +9,8 @@ if [ -z "$keymap" ]; then
 fi
 
 # If $RUNTIME is not set, check if podman or docker exists on the machine,
-# and set $RUNTIME to the container runtime that exists.
+# and set $RUNTIME to the container runtime that is found.
+# If none are found, error out.
 if [ -z "$RUNTIME" ]; then
     if command -v podman >/dev/null 2>&1; then
         RUNTIME="podman"
